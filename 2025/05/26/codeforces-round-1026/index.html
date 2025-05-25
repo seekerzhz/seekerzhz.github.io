@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  
+  <title>codeforces round 1026 | john&#39;s homepage</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="D.Robot and Batteries 题解（BFS + 二分答案） 题目描述 你需要帮助一个机器人从第 1 个检查点移动到第 n 个检查点。地图上有 n 个点和 m 条单向路径（si &lt; ti），每条路径有一个电池需求 wi：机器人只有在携带的电池数量 ≥ wi 时，才能走这条路径。 此外：  每个检查点 i 提供最多 bi 块电池（你可以选择拿 0 到 bi 块）。 机器人在每个检查">
+<meta property="og:type" content="article">
+<meta property="og:title" content="codeforces round 1026">
+<meta property="og:url" content="http://example.com/2025/05/26/codeforces-round-1026/index.html">
+<meta property="og:site_name" content="john&#39;s homepage">
+<meta property="og:description" content="D.Robot and Batteries 题解（BFS + 二分答案） 题目描述 你需要帮助一个机器人从第 1 个检查点移动到第 n 个检查点。地图上有 n 个点和 m 条单向路径（si &lt; ti），每条路径有一个电池需求 wi：机器人只有在携带的电池数量 ≥ wi 时，才能走这条路径。 此外：  每个检查点 i 提供最多 bi 块电池（你可以选择拿 0 到 bi 块）。 机器人在每个检查">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2025-05-25T17:28:30.000Z">
+<meta property="article:modified_time" content="2025-05-25T17:37:04.242Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="john's homepage" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.ico">
+  
+  
+<link rel="stylesheet" href="/css/typing.css">
+
+  
+<link rel="stylesheet" href="/css/donate.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1/css/fork-awesome.min.css">
+
+  
+  
+    
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+  
+    
+      <body>
+    
+  
+      <div id="container" class="container">
+        <article id="post-codeforces-round-1026" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <header id="header" class="header">
+  <nav class="mobile-nav">
+    <h1 class="nickname">John(赵涵铮)</h1>
+    <ul class="mobile-nav-menu">
+      <label for="mobile-menu-toggle"><a id="menu-button">&#9776; Menu</a></label>
+      <input type="checkbox" id="mobile-menu-toggle"/>
+      <ul class="mobile-nav-link">
+        
+        <a href="/">Home</a>
+        
+        <a href="/archives">Archives</a>
+        
+        <a href="/about">About</a>
+        
+      </ul>
+    </ul>
+  </nav>
+	
+		<nav id="main-nav" class="main-nav">
+	
+	
+	  <a class="main-nav-link" href="/">Home</a>
+	
+	  <a class="main-nav-link" href="/archives">Archives</a>
+	
+	  <a class="main-nav-link" href="/about">About</a>
+	
+  </nav>
+</header>
+
+  <hr/>
+  <div class="article-inner">
+    
+
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      codeforces round 1026
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry typo" itemprop="articleBody">
+      
+        <h1 id="d.robot-and-batteries-%E9%A2%98%E8%A7%A3%EF%BC%88bfs-%2B-%E4%BA%8C%E5%88%86%E7%AD%94%E6%A1%88%EF%BC%89" tabindex="-1">D.Robot and Batteries 题解（BFS + 二分答案）</h1>
+<h2 id="%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0" tabindex="-1" id="题目描述">题目描述</h2>
+<p>你需要帮助一个机器人从第 1 个检查点移动到第 <code>n</code> 个检查点。地图上有 <code>n</code> 个点和 <code>m</code> 条单向路径（<code>si &lt; ti</code>），每条路径有一个电池需求 <code>wi</code>：机器人只有在携带的电池数量 ≥ <code>wi</code> 时，才能走这条路径。</p>
+<p>此外：</p>
+<ul>
+<li>每个检查点 <code>i</code> 提供最多 <code>bi</code> 块电池（你可以选择拿 0 到 <code>bi</code> 块）。</li>
+<li>机器人在每个检查点可以充满所有已有电池。</li>
+<li>机器人出发时没有电池。</li>
+</ul>
+<p><strong>目标</strong>：求机器人最少携带多少块电池，才能从点 1 到点 n。如果无法到达，输出 <code>-1</code>。</p>
+<hr>
+<h2 id="%E8%A7%A3%E9%A2%98%E6%80%9D%E8%B7%AF" tabindex="-1" id="解题思路">解题思路</h2>
+<p>我们希望找出一个<strong>最小的电池数 <code>x</code></strong>，使得机器人能在任意节点都携带不超过 <code>x</code> 块电池的前提下，从起点走到终点。</p>
+<p>这个问题满足“<strong>单调性</strong>”，如果在电池上限为 <code>x</code> 时可以到达终点，那么更大的 <code>x+1</code>,<code>x+2</code> 也一定可以。所以我们可以使用 <strong>二分答案</strong> 来求解这个最小值。</p>
+<p>那如何判断 <code>x</code> 是否可行呢？</p>
+<p>在电池上限为 <code>x</code> 的前提下：</p>
+<ol>
+<li>
+<p>从起点开始，初始电池数量为 <code>min(b[1], x)</code>。</p>
+</li>
+<li>
+<p>遍历所有点，用 BFS 或 DFS 模拟路径移动：</p>
+<ul>
+<li>当前电池数为 <code>e</code>。</li>
+<li>在每个相邻路径 <code>(u, v)</code> 上，如果 <code>w_i &lt;= e</code>，就能移动到 <code>v</code>。</li>
+<li>到达 <code>v</code> 后，更新电池数为 <code>min(e + b[v], x)</code>（不能超过电池上限）。</li>
+</ul>
+</li>
+<li>
+<p>如果在某次模拟中，最终能到达 <code>n</code>，说明 <code>x</code> 可行。</p>
+</li>
+</ol>
+<p>以下面为例</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">n = 4, m = 3</span><br><span class="line">b = [1, 2, 1, 1]  // 每个点提供的电池</span><br><span class="line"></span><br><span class="line">edges:</span><br><span class="line">1 -&gt; 2, 需要 1 电池</span><br><span class="line">2 -&gt; 4, 需要 2 电池</span><br><span class="line">1 -&gt; 3, 需要 0 电池</span><br><span class="line">3 -&gt; 4, 需要 1 电池</span><br></pre></td></tr></table></figure>
+<ul>
+<li>尝试 <code>x = 1</code>：无法从 2 到 4（需要 2 电池），失败。</li>
+<li>尝试 <code>x = 2</code>：从 1 → 2（拿 1 电池），→ 4（从 2 拿 1 电池，总 2），成功。</li>
+</ul>
+<hr>
+<p>让我们再次理一下思路：</p>
+<ol>
+<li>对 <code>x ∈ [0, 1e9]</code> 二分，查找最小可行值。</li>
+<li>每次检查 <code>x</code> 是否可行，用 BFS 判断是否能从 1 到 n。</li>
+</ol>
+<hr>
+<h2 id="%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6" tabindex="-1" id="时间复杂度">时间复杂度</h2>
+<ul>
+<li>二分次数为 <code>log(max_battery) ≈ 30</code>。 每次 BFS 复杂度为 <code>O(n + m)</code>。总体复杂度：<code>O(T * log(1e9) * (n + m))</code></li>
+</ul>
+<hr>
+<h2 id="%E5%AE%9E%E7%8E%B0" tabindex="-1" id="实现">实现</h2>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"><span class="meta">#<span class="keyword">ifdef</span> LOCAL</span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INPUT(from) freopen(from, <span class="string">&quot;r&quot;</span>, stdin)</span></span><br><span class="line"><span class="meta">#<span class="keyword">else</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">define</span> INPUT(from) ((void)0)</span></span><br><span class="line"><span class="meta">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="type">long</span> <span class="type">long</span> ll;</span><br><span class="line"><span class="meta">#</span></span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">struct Edge &#123;</span></span><br><span class="line">    <span class="type">int</span> to;</span><br><span class="line">    <span class="type">int</span> w;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">judge</span><span class="params">(<span class="type">int</span> x, vector&lt;vector&lt;Edge&gt;&gt; g, vector&lt;<span class="type">int</span>&gt; b)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = b.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">bool</span>&gt; <span class="title">flag</span><span class="params">(n + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">battery</span><span class="params">(n + <span class="number">1</span>, <span class="number">-1</span>)</span></span>;</span><br><span class="line"></span><br><span class="line">    queue&lt;<span class="type">int</span>&gt; q;</span><br><span class="line">    q.<span class="built_in">push</span>(<span class="number">1</span>);</span><br><span class="line">    flag[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    battery[<span class="number">1</span>] = <span class="built_in">min</span>(x, b[<span class="number">1</span>]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!q.<span class="built_in">empty</span>()) &#123;</span><br><span class="line">        <span class="keyword">auto</span> top = q.<span class="built_in">front</span>();</span><br><span class="line">        q.<span class="built_in">pop</span>();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">const</span> <span class="keyword">auto</span>&amp; edge : g[top]) &#123;</span><br><span class="line">            <span class="keyword">if</span> (edge.w &lt;= battery[top]) &#123;</span><br><span class="line">                <span class="keyword">auto</span> v = edge.to;</span><br><span class="line">                <span class="keyword">auto</span> new_battery = battery[top] + b[v];</span><br><span class="line">                new_battery = <span class="built_in">min</span>(new_battery, x); <span class="comment">// 上限是x</span></span><br><span class="line">                <span class="keyword">if</span> (!flag[v] || new_battery &gt; battery[v]) &#123;</span><br><span class="line">                    flag[v] = <span class="literal">true</span>;</span><br><span class="line">                    battery[v] = new_battery;</span><br><span class="line">                    q.<span class="built_in">push</span>(v);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> flag[n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">work</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> m, vector&lt;<span class="type">int</span>&gt; b, vector&lt;tuple&lt;<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>&gt;&gt; edges)</span> </span>&#123;</span><br><span class="line">    vector&lt;vector&lt;Edge&gt;&gt; <span class="built_in">g</span>(n + <span class="number">1</span>);</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> [u, v, w] : edges) &#123;</span><br><span class="line">        g[u].<span class="built_in">push_back</span>(&#123;v, w&#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> l = <span class="number">0</span>, r = <span class="number">1e9</span>, ans = <span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">while</span> (l &lt;= r) &#123;</span><br><span class="line">        <span class="type">int</span> mid = l + (r - l) / <span class="number">2</span>;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">judge</span>(mid, g, b)) &#123;</span><br><span class="line">            ans = mid;</span><br><span class="line">            r = mid - <span class="number">1</span>;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            l = mid + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">void</span> <span class="title">solve</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="type">int</span> n, m;</span><br><span class="line">        cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">        <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">b</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) cin &gt;&gt; b[i];</span><br><span class="line">        vector&lt;tuple&lt;<span class="type">int</span>, <span class="type">int</span>, <span class="type">int</span>&gt;&gt; <span class="built_in">edges</span>(m);</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; m; ++i) &#123;</span><br><span class="line">            <span class="type">int</span> u, v, w;</span><br><span class="line">            cin &gt;&gt; u &gt;&gt; v &gt;&gt; w;</span><br><span class="line">            edges[i] = &#123;u, v, w&#125;;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        cout &lt;&lt; <span class="built_in">work</span>(n, m, b, edges) &lt;&lt; <span class="string">&#x27;\n&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="built_in">INPUT</span>(<span class="string">&quot;in.txt&quot;</span>);</span><br><span class="line">    ios::<span class="built_in">sync_with_stdio</span>(<span class="literal">false</span>);</span><br><span class="line">    cin.<span class="built_in">tie</span>(<span class="literal">nullptr</span>);</span><br><span class="line">    <span class="type">int</span> tc;</span><br><span class="line">    cin &gt;&gt; tc;</span><br><span class="line">    <span class="keyword">while</span> (tc--) <span class="built_in">solve</span>(); </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+      
+      
+    </div>
+    <footer class="article-footer">
+      <ul class="article-meta">
+        <li>
+          <span class="label">Published Date:</span>
+          <a href="/2025/05/26/codeforces-round-1026/" class="article-date">
+  <time class="dt-published" datetime="2025-05-25T17:28:30.000Z" itemprop="datePublished">2025-05-26</time>
+</a>
+
+        </li>
+        
+        
+        <hr/>
+      </ul>
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav" class="article-nav">
+  
+    <span id="article-nav-newer" class="article-nav-link-wrap newer"></span>
+  
+  
+    <a href="/2025/05/24/cs144-check0/" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">cs144-check0</div>
+    </a>
+  
+</nav>
+
+
+  
+</article>
+
+
+
+
+
+
+
+
+
+
+      </div>
+      
+    <footer id="footer" class="post-footer footer">
+      
+        <ul class="footer-links">
+          
+            <li><a href="/archives/"><span class="fa fa-book"></span></a></li>
+          
+            <li><a target="_blank" rel="noopener" href="https://codeforces.com/profile/irene_judge"><span class="fa fa-globe"></span></a></li>
+          
+            <li><a target="_blank" rel="noopener" href="https://github.com/seekerzhz"><span class="fa fa-github-alt"></span></a></li>
+          
+            <li><a target="_blank" rel="noopener" href="https://www.zhihu.com/people/seeker-19-43"><span class="fa fa-stack-overflow"></span></a></li>
+          
+            <li><a href="/atom.xml"><span class="fa fa-rss"></span></a></li>
+          
+        </ul>
+	    
+      <hr/>
+      <div id="footerContent" class="footer-content">
+        
+
+      </div>
+    </footer>
+
+      
+
+
+
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/typing.js"></script>
+
+<!--[if lt IE 9]>
+<script src="https://cdn.jsdelivr.net/npm/html5shiv@3/dist/html5shiv.min.js"></script>
+<![endif]-->
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GSCSFPP2NY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-GSCSFPP2NY');
+  </script>
+  <!-- End Google Analytics -->
+  
+
+
+
+
+    </div>
+  </body>
+</html>
