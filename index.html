@@ -1,46 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="utf-8">
   
-  <title>john&#39;s homepage</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="写点什么呢？">
+    <title>
+      
+            john&#39;s homepage
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="写点什么呢？">
 <meta property="og:type" content="website">
 <meta property="og:title" content="john&#39;s homepage">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="https://seekerzhz.github.io/index.html">
 <meta property="og:site_name" content="john&#39;s homepage">
 <meta property="og:description" content="写点什么呢？">
-<meta property="og:locale" content="en_US">
-<meta property="article:author" content="John Doe">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="John harry">
 <meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="john's homepage" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.ico">
-  
-  
+      
+            <link rel="alternate" href="/atom.xml" title="john's homepage" type="application/atom+xml">
+              
+                
+                  <link rel="shortcut icon" href="/favicon.ico">
+                    
+                      
 <link rel="stylesheet" href="/css/typing.css">
 
-  
+                        
 <link rel="stylesheet" href="/css/donate.css">
 
-  
-  
-    
+                          
+                                
+                                  
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
-  
+                                    
 <meta name="generator" content="Hexo 7.3.0"></head>
 
+<style>
+  #progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: #22c5e5;
+    width: 0%;
+    z-index: 9999;
+  }
+</style>
   
     
-    <body class="home-body">
-    
-  
-      <div id="container" class="container">
-        <div class="home">
+
+          <body class="home-body">
+            
+              
+                            <div id="container" class="container">
+                              <div class="home">
   <div class="content">
     <div class="profile">
       <h1 class="nickname">hanzheng zhao(赵涵铮)</h1>
@@ -81,16 +96,25 @@ ICPC邀请赛铜奖选手，目前致力于数据库内核相关工作，正在�
       
     </ul>
 
-      </div>
-      
+                            </div>
+                            
   <footer id="footer" class="home-footer footer">
     <div id="copyright" class="copyright">
-      &copy; 2025 John Doe  Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme &copy; <a href="https://github.com/geekplux" target="_blank">GeekPlux</a>
+      &copy; 2025 John harry  Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>  Theme &copy; <a href="https://github.com/geekplux" target="_blank">GeekPlux</a>
 
       </div>
     </footer>
+<script>
+document.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const scrollTop = doc.scrollTop;
+  const scrollHeight = doc.scrollHeight - doc.clientHeight;
+  const scrolled = (scrollTop / scrollHeight) * 100;
+  document.getElementById('progress-bar').style.width = scrolled + '%';
+});
+</script>
 
-      
+                              
 
 
 
@@ -134,6 +158,9 @@ ICPC邀请赛铜奖选手，目前致力于数据库内核相关工作，正在�
 
 
 
-    </div>
-  </body>
+                                </div>
+                                <div id="progress-bar"></div>
+
+                      </body>
+
 </html>
