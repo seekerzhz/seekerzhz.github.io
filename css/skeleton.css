@@ -201,8 +201,9 @@ body {
   font-weight: 400;
 
   font-family:
-    "Microsoft YaHei",
+    Consolas,
     "Inter",
+    "Microsoft YaHei",
     sans-serif;
 
   color: #222;
