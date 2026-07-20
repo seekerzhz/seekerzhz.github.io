@@ -19,11 +19,11 @@ MathJax = {
   <meta charset="utf-8">
 
   
-  <title>About - Harry Zhao</title>
+  <title>Deploying My Personal Services Under One Domain-0716 diary</title>
   
-  <link rel="canonical" href="http://212.64.0.27:8001/About/">
+  <link rel="canonical" href="http://212.64.0.27:8001/posts/5910/">
   
-  <meta name="description" content="">
+  <meta name="description" content="Yesterday afternoon, I finally claimed the dezoist.top domain. With it, I deployed three services under separate subdomains: DataForge — my AI-powered">
   
   
   <meta name="keywords" content="Computer Science,Database,Distributed Systems,Systems Programming,Programming,Research Notes">
@@ -34,21 +34,21 @@ MathJax = {
   
   <meta property="og:site_name" content="Harry&#39;s Blog" />
   <meta property="og:type" content="article" />
-  <meta property="og:title" content="About - Harry Zhao" />
+  <meta property="og:title" content="Deploying My Personal Services Under One Domain-0716 diary" />
   
-  <meta property="og:description" content="">
+  <meta property="og:description" content="Yesterday afternoon, I finally claimed the dezoist.top domain. With it, I deployed three services under separate subdomains: DataForge — my AI-powered">
   
-  <meta property="og:url" content="http://212.64.0.27:8001/About/" />
+  <meta property="og:url" content="http://212.64.0.27:8001/posts/5910/" />
 
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="About - Harry Zhao">
+  <meta name="twitter:title" content="Deploying My Personal Services Under One Domain-0716 diary">
   
-  <meta name="twitter:description" content="">
-  
-  
+  <meta name="twitter:description" content="Yesterday afternoon, I finally claimed the dezoist.top domain. With it, I deployed three services under separate subdomains: DataForge — my AI-powered">
   
   
-  <meta name="twitter:url" content="http://212.64.0.27:8001/About/" />
+  
+  
+  <meta name="twitter:url" content="http://212.64.0.27:8001/posts/5910/" />
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -209,29 +209,19 @@ MathJax = {
 </div>
 
         <div class="trans">
-            <h2>About</h2>
+            <h2>Deploying My Personal Services Under One Domain-0716 diary</h2>
 
-  <p>Hi, I’m Harry.</p>
-<p>I’m currently preparing for graduate study while focusing on database internals, distributed systems, and high-performance software engineering.</p>
-<p>This website serves as my digital notebook, where I document what I learn, build, and think about.</p>
-<h2 id="Current-Interests"><a href="#Current-Interests" class="headerlink" title="Current Interests"></a>Current Interests</h2><ul>
-<li>Database Internals</li>
-<li>Distributed Storage</li>
-<li>Operating Systems</li>
-<li>Computer Networks</li>
-<li>Algorithms</li>
-<li>Performance Engineering</li>
-</ul>
-<h2 id="Current-Projects"><a href="#Current-Projects" class="headerlink" title="Current Projects"></a>Current Projects</h2><ul>
-<li>Data Forge</li>
-<li>MiniKV</li>
-<li>CMU 15-445 Labs</li>
-<li>CS144 Labs</li>
-<li>Database Reading Notes</li>
-</ul>
-<h2 id="Philosophy"><a href="#Philosophy" class="headerlink" title="Philosophy"></a>Philosophy</h2><p>I believe that software engineering should not merely be about building applications. The real beauty lies in understanding how systems work beneath the surface.</p>
-<p>My long-term goal is to become an engineer capable of designing reliable, scalable storage systems.</p>
-<h2 id="Contact"><a href="#Contact" class="headerlink" title="Contact"></a>Contact</h2><p>GitHub: github.com&#x2F;seekerzhz<br>Email: <a href="mailto:&#x7a;&#104;&#x61;&#111;&#104;&#x61;&#110;&#x7a;&#x68;&#x65;&#110;&#x67;&#64;&#121;&#x65;&#x61;&#104;&#x2e;&#110;&#x65;&#116;">&#x7a;&#104;&#x61;&#111;&#104;&#x61;&#110;&#x7a;&#x68;&#x65;&#110;&#x67;&#64;&#121;&#x65;&#x61;&#104;&#x2e;&#110;&#x65;&#116;</a></p>
+  <p>Yesterday afternoon, I finally claimed the dezoist.top domain.</p>
+<p>With it, I deployed three services under separate subdomains:</p>
+<p>DataForge — my AI-powered data analysis platform<br>Online Judge — my personal OJ for algorithm practice<br>Blog — the place where I document what I build and learn</p>
+<p>Surprisingly, the entire deployment went much more smoothly than I expected. Compared with my previous deployment experiences, almost everything worked on the first try.</p>
+<p>The only part that slowed me down was configuring the reverse proxy. Since all three services shared the same public IP, I needed Caddy to route incoming requests based on the requested hostname:</p>
+<p>dataforge.dezoist.top → localhost:8000<br>blog.dezoist.top → localhost:8001<br>oj.dezoist.top → localhost:8888</p>
+<p>I also learned an important lesson during the process: a reverse proxy routes requests by hostname, not by IP. Once I understood how Caddy matched Host headers and forwarded requests to different local ports, the whole setup became surprisingly elegant.</p>
+<p>Now everything is running under a single domain with automatic HTTPS, making future deployments much easier. It feels satisfying to see my projects finally organized under one unified identity.</p>
+
+  <p> — 2026年7月17日</p>
+  
 
 
         </div>
