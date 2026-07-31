@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>cpp教学大纲-CSP-J初赛</title>
+  
+  <link rel="canonical" href="https://blog.hanzel.top/posts/cpp%E6%95%99%E5%AD%A6-csp-j%E5%88%9D%E8%B5%9B/">
+  
+  <meta name="description" content="计算机硬件与组成原理（选择题必考） 1.1 计算机发展史（第一台电子计算机 ENIAC，冯·诺依曼提出存储程序） 1.2 冯·诺依曼体系结构五大部件（运算器、控制器、存储器、输入设备、输出设备） 1.3 CPU 的组成（运算器 ALU、控制器 CU、寄存器组） 1.4 CPU 执行指令的过程（取指、">
+  
+  
+  <meta name="keywords" content="Computer Science,Database,Distributed Systems,Systems Programming,Programming,Research Notes">
+  
+  <meta name="author" content="Harry Zhao">
+  
+  
+  
+  <meta property="og:site_name" content="Harry&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="cpp教学大纲-CSP-J初赛" />
+  
+  <meta property="og:description" content="计算机硬件与组成原理（选择题必考） 1.1 计算机发展史（第一台电子计算机 ENIAC，冯·诺依曼提出存储程序） 1.2 冯·诺依曼体系结构五大部件（运算器、控制器、存储器、输入设备、输出设备） 1.3 CPU 的组成（运算器 ALU、控制器 CU、寄存器组） 1.4 CPU 执行指令的过程（取指、">
+  
+  <meta property="og:url" content="https://blog.hanzel.top/posts/cpp%E6%95%99%E5%AD%A6-csp-j%E5%88%9D%E8%B5%9B/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="cpp教学大纲-CSP-J初赛">
+  
+  <meta name="twitter:description" content="计算机硬件与组成原理（选择题必考） 1.1 计算机发展史（第一台电子计算机 ENIAC，冯·诺依曼提出存储程序） 1.2 冯·诺依曼体系结构五大部件（运算器、控制器、存储器、输入设备、输出设备） 1.3 CPU 的组成（运算器 ALU、控制器 CU、寄存器组） 1.4 CPU 执行指令的过程（取指、">
+  
+  
+  
+  
+  <meta name="twitter:url" content="https://blog.hanzel.top/posts/cpp%E6%95%99%E5%AD%A6-csp-j%E5%88%9D%E8%B5%9B/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="/fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/dove-icon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+  
+  <script src="/js/pic.min.js" defer></script>
+  
+
+  
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Hi Folks.
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/archives" class="ml">Archives</a>
+          
+        
+          
+          <a href="/Works" class="ml">Works</a>
+          
+        
+          
+          <a href="/About" class="ml">About</a>
+          
+        
+        
+          
+            <a href="mailto:zhaohanzheng@yeah.net" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>cpp教学大纲-CSP-J初赛</h2>
+
+  <ol>
+<li><p>计算机硬件与组成原理（选择题必考）<br> 1.1 计算机发展史（第一台电子计算机 ENIAC，冯·诺依曼提出存储程序）<br> 1.2 冯·诺依曼体系结构五大部件（运算器、控制器、存储器、输入设备、输出设备）<br> 1.3 CPU 的组成（运算器 <code>ALU</code>、控制器 <code>CU</code>、寄存器组）<br> 1.4 CPU 执行指令的过程（取指、译码、执行、访存、写回）<br> 1.5 存储器金字塔（寄存器 -&gt; 高速缓存 <code>Cache</code> -&gt; 主存 <code>RAM</code> -&gt; 辅存 磁盘&#x2F;SSD）<br> 1.6 <code>Cache</code> 局部性原理（时间局部性、空间局部性）<br> 1.7 存储单位换算（Bit -&gt; Byte -&gt; KB -&gt; MB -&gt; GB -&gt; TB -&gt; PB，进制 $1024$）<br> 1.8 内存寻址（按字节编址，每个字节有唯一地址）</p>
+</li>
+<li><p>数制转换与编码（计算题必考）<br> 2.1 二进制转十进制（按权展开相加）<br> 2.2 十进制转二进制（整数除二取余倒序，小数乘二取整正序）<br> 2.3 二进制转八进制（三位一组，不足补 $0$）<br> 2.4 二进制转十六进制（四位一组，不足补 $0$）<br> 2.5 八进制与十六进制的表示法（C++中 <code>0</code> 开头八进制，<code>0x</code> 开头十六进制）<br> 2.6 原码的定义（最高位符号位，$0$ 正 $1$ 负，数值位为绝对值）<br> 2.7 反码的定义（正数同原码，负数符号位不变，其余位取反）<br> 2.8 补码的定义（正数同原码，负数反码 $+1$，解决 $0$ 的两种编码问题）<br> 2.9 补码的表示范围（$n$ 位补码范围 $-2^{n-1} \sim 2^{n-1}-1$）<br> 2.10 8位二进制补码范围（$-128 \sim +127$）<br> 2.11 补码转原码的快速方法（符号位不变，取反 $+1$）<br> 2.12 <code>BCD</code>码与<code>ASCII</code>码的区别</p>
+</li>
+<li><p>计算机系统与软件（概念题）<br> 3.1 系统软件（操作系统、编译器、解释器、汇编器）<br> 3.2 应用软件（浏览器、办公软件、游戏）<br> 3.3 计算机语言分类（机器语言、汇编语言、高级语言）<br> 3.4 编译与解释的区别（编译生成可执行文件，解释器逐行执行）<br> 3.5 操作系统的进程管理（进程与线程的区别，并发与并行）<br> 3.6 操作系统的内存管理（虚拟内存、分页、分段）<br> 3.7 文件系统与文件路径（绝对路径、相对路径，Windows用 <code>\</code>，Linux用 <code>/</code>）<br> 3.8 Linux 基本命令（<code>ls</code> 列出目录， <code>cd</code> 切换目录， <code>mkdir</code> 创建目录， <code>rm</code> 删除， <code>cp</code> 复制， <code>mv</code> 移动）<br> 3.9 Linux 权限管理（<code>rwx</code> 读&#x2F;写&#x2F;执行，<code>chmod</code> 修改权限）<br> 3.10 Linux 中的 <code>g++</code> 编译命令（<code>g++ -o out main.cpp -std=c++11</code>）</p>
+</li>
+<li><p>计算机网络基础（概念与协议）<br> 4.1 计算机网络定义（多台计算机通过通信线路互联）<br> 4.2 局域网 <code>LAN</code>、城域网 <code>MAN</code>、广域网 <code>WAN</code><br> 4.3 因特网（<code>Internet</code>）与万维网（<code>WWW</code>）的关系<br> 4.4 <code>OSI</code> 七层模型简述（物理、数据链路、网络、传输、会话、表示、应用）<br> 4.5 <code>TCP/IP</code> 四层模型（网络接口、网际、传输、应用）<br> 4.6 <code>IP</code> 地址（<code>IPv4</code> 32位，点分十进制，<code>IPv6</code> 128位）<br> 4.7 域名系统 <code>DNS</code>（域名解析为IP地址）<br> 4.8 端口号的作用（<code>HTTP</code> 80， <code>HTTPS</code> 443， <code>FTP</code> 21， <code>SSH</code> 22）<br> 4.9 <code>URL</code> 的组成（协议:&#x2F;&#x2F;域名&#x2F;路径）</p>
+</li>
+<li><p>数据结构基础（理论与性质）<br> 5.1 数据结构的逻辑分类（线性结构、树形结构、图形结构）<br> 5.2 线性表的存储方式（顺序存储——数组，与链式存储——链表）<br> 5.3 数组的随机访问特性（时间复杂度 $O(1)$）<br> 5.4 链表的插入删除特性（时间复杂度 $O(1)$，但查找需要 $O(n)$）<br> 5.5 栈的 <code>LIFO</code> 性质应用（递归转非递归、括号匹配、函数调用栈）<br> 5.6 队列的 <code>FIFO</code> 性质应用（缓冲区、<code>BFS</code>、打印队列）<br> 5.7 树的基本概念（根节点、叶子节点、度、层次、深度&#x2F;高度）<br> 5.8 二叉树的性质（第 $i$ 层最多 $2^{i-1}$ 个节点，深度为 $k$ 最多 $2^k - 1$ 个节点）<br> 5.9 二叉树度数与节点数的公式（$N_0 &#x3D; N_2 + 1$，其中 $N_0$ 叶子，$N_2$ 度为2）<br> 5.10 完全二叉树的定义（除最后一层外每层都满，最后一层从左到右连续）<br> 5.11 满二叉树的定义（每一层都是满的，即完美二叉树）<br> 5.12 二叉树的三种遍历（先序：根左右，中序：左根右，后序：左右根）<br> 5.13 已知前序+中序求后序（前序确定根，中序分左右）<br> 5.14 图的定义（顶点集 $V$ 与边集 $E$）<br> 5.15 有向图与无向图的区别<br> 5.16 邻接矩阵存储（空间 $O(V^2)$，适合稠密图）<br> 5.17 邻接表存储（空间 $O(V+E)$，适合稀疏图）<br> 5.18 树是特殊的图（无环连通图）</p>
+</li>
+<li><p>数学与组合计数（排列组合）<br> 6.1 加法原理（分类相加）<br> 6.2 乘法原理（分步相乘）<br> 6.3 排列数公式（$A(n,m) &#x3D; \dfrac{n!}{(n-m)!}$，强调顺序）<br> 6.4 组合数公式（$C(n,m) &#x3D; \dfrac{n!}{m!(n-m)!}$，不强调顺序）<br> 6.5 组合数的对称性（$C(n,m) &#x3D; C(n, n-m)$）<br> 6.6 捆绑法（相邻问题，捆绑后内部排列）<br> 6.7 插空法（不相邻问题，先排其他再插空）<br> 6.8 隔板法（分配问题，将 $n$ 个相同物品分给 $m$ 个人）<br> 6.9 错位排列（全错排问题，$D_n &#x3D; (n-1)(D_{n-1}+D_{n-2})$）<br> 6.10 容斥原理（两集合容斥：$|A \cup B| &#x3D; |A| + |B| - |A \cap B|$）<br> 6.11 鸽巢原理（抽屉原理，若有 $n+1$ 个物品放入 $n$ 个抽屉，至少一个抽屉有两个）</p>
+</li>
+<li><p>数论基础（初赛常见）<br> 7.1 质数的定义（除了 $1$ 和本身没有其他因子）<br> 7.2 合数的定义<br> 7.3 试除法判定质数（只需试除到 $\sqrt{n}$）<br> 7.4 欧几里得算法（辗转相除法求 <code>gcd</code>）<br> 7.5 $\gcd(a,b) \cdot \operatorname{lcm}(a,b) &#x3D; a \cdot b$<br> 7.6 模运算性质（$(a+b) \bmod m &#x3D; (a \bmod m + b \bmod m) \bmod m$）<br> 7.7 同余概念（$a \equiv b \pmod m$ 表示 $m \mid (a-b)$）</p>
+</li>
+<li><p>算法概念与复杂度分析（初赛重点）<br> 8.1 时间复杂度的上界表示法（大 $O$ 记号，忽略低阶项和常数）<br> 8.2 $O(1)$ 常数级（直接访问、简单计算）<br> 8.3 $O(\log n)$ 对数级（二分查找、二叉树高度）<br> 8.4 $O(n)$ 线性级（单重循环、遍历数组）<br> 8.5 $O(n \log n)$ 线性对数级（快速排序、归并排序）<br> 8.6 $O(n^2)$ 平方级（双重循环、冒泡排序）<br> 8.7 $O(2^n)$ 指数级（递归枚举子集，通常不可行）<br> 8.8 递归算法复杂度的递推式求解（主定理 <code>Master Theorem</code> 基本形态）<br> 8.9 空间复杂度的计算（数组内存占用、递归栈深度）</p>
+</li>
+<li><p>阅读程序与完善程序（初赛大题）<br> 9.1 阅读程序时，先看输入与输出，再分析核心逻辑<br> 9.2 变量的生命周期与值的变化（列表追踪法）<br> 9.3 循环终止条件的判断（边界测试，如 <code>&lt;=</code> 与 <code>&lt;</code> 的区别）<br> 9.4 数组下标的偏移陷阱（下标从 $0$ 开始 vs 题目描述从 $1$ 开始）<br> 9.5 递归函数的调用堆栈展开（手工模拟递归执行）<br> 9.6 完善程序（填空）的核心依据（上下文逻辑一致性）<br> 9.7 完善程序中的常见填法（循环变量的初值、终值、递推表达式）<br> 9.8 程序输出题中“静态变量”与“全局变量”的特殊性</p>
+</li>
+<li><p>编程语言特性与常见错误（针对读程序）<br>10.1 短路求值对变量自增的影响（例如 <code>if(a&gt;0 &amp;&amp; b++ &gt; 0)</code>）<br>10.2 逗号表达式的返回值（最后一个值）<br>10.3 浮点数精度丢失带来的判断错误（如 <code>1.0/3*3</code> 不等于 $1$）<br>10.4 整数溢出问题（<code>int</code> 最大值加 $1$ 变成负数）<br>10.5 无符号整数下溢问题（$0-1$ 变成极大的正数）<br>10.6 <code>switch</code> 中缺少 <code>break</code> 的穿透现象<br>10.7 指针与引用的基础概念（变量别名 vs 地址存储）</p>
+</li>
+</ol>
+
+  <p><a class="classtest-link" href="/tags/%E6%95%99%E5%AD%A6/" rel="tag">教学</a> — 2026年7月15日</p>
+  
+  <hr>
+<section id="comments" class="mt-2 mb-3">
+
+  <div id="disqus_thread">
+    <a href="#" class="button button-primary" onclick="loadDisqus();return false;">View / Make Comments</a>
+  </div>
+
+  <script>
+    var disqus_config = function() {
+      this.page.url = 'https://blog.hanzel.top/posts/cpp教学-csp-j初赛/index.html';
+      this.page.identifier = 'posts/cpp教学-csp-j初赛/index.html';
+      this.page.title = 'cpp教学大纲-CSP-J初赛';
+    };
+
+    var is_disqus_loaded = false;
+
+    function loadDisqus() {
+      if (!is_disqus_loaded) {
+        is_disqus_loaded = true;
+
+        var d = document,
+          s = d.createElement('script');
+        s.src = 'https://https-adisaktijrs-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+    }
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+        </div>
+        <div class="row mt-2">
+  <h3>Search</h3>
+  <div><input id="search-text" title="search" class="search-text" type="text" placeholder="search......"></div>
+  <div style="margin-top: 1.5rem;">
+    <ul id="result"></ul>
+  </div>
+</div>
+        <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+        at <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noreferrer">Earth</a>.</p>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/seekerzhz" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>

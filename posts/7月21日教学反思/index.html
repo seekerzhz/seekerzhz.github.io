@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>刻意训练、优化与精进，语法如何学好？——7月21日教学反思</title>
+  
+  <link rel="canonical" href="https://blog.hanzel.top/posts/7%E6%9C%8821%E6%97%A5%E6%95%99%E5%AD%A6%E5%8F%8D%E6%80%9D/">
+  
+  <meta name="description" content="刻意训练、优化与精进，语法阶段，应该如何学“好”？——7月21日教学反思有趣的跳跃这道题已经具有区分度了。更新元素差、再对元素差排序，这两件事对 C++ 初学者并非自然而然就能解决。然而，在21日晚上的作业讲解中，小朋友能够相对顺利地完成该题，实际出乎我的意料。 while 与 for 的学习阶段，">
+  
+  
+  <meta name="keywords" content="Computer Science,Database,Distributed Systems,Systems Programming,Programming,Research Notes">
+  
+  <meta name="author" content="Harry Zhao">
+  
+  
+  
+  <meta property="og:site_name" content="Harry&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="刻意训练、优化与精进，语法如何学好？——7月21日教学反思" />
+  
+  <meta property="og:description" content="刻意训练、优化与精进，语法阶段，应该如何学“好”？——7月21日教学反思有趣的跳跃这道题已经具有区分度了。更新元素差、再对元素差排序，这两件事对 C++ 初学者并非自然而然就能解决。然而，在21日晚上的作业讲解中，小朋友能够相对顺利地完成该题，实际出乎我的意料。 while 与 for 的学习阶段，">
+  
+  <meta property="og:url" content="https://blog.hanzel.top/posts/7%E6%9C%8821%E6%97%A5%E6%95%99%E5%AD%A6%E5%8F%8D%E6%80%9D/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="刻意训练、优化与精进，语法如何学好？——7月21日教学反思">
+  
+  <meta name="twitter:description" content="刻意训练、优化与精进，语法阶段，应该如何学“好”？——7月21日教学反思有趣的跳跃这道题已经具有区分度了。更新元素差、再对元素差排序，这两件事对 C++ 初学者并非自然而然就能解决。然而，在21日晚上的作业讲解中，小朋友能够相对顺利地完成该题，实际出乎我的意料。 while 与 for 的学习阶段，">
+  
+  
+  
+  
+  <meta name="twitter:url" content="https://blog.hanzel.top/posts/7%E6%9C%8821%E6%97%A5%E6%95%99%E5%AD%A6%E5%8F%8D%E6%80%9D/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="/fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/dove-icon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+  
+  <script src="/js/pic.min.js" defer></script>
+  
+
+  
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Hi Folks.
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/archives" class="ml">Archives</a>
+          
+        
+          
+          <a href="/Works" class="ml">Works</a>
+          
+        
+          
+          <a href="/About" class="ml">About</a>
+          
+        
+        
+          
+            <a href="mailto:zhaohanzheng@yeah.net" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>刻意训练、优化与精进，语法如何学好？——7月21日教学反思</h2>
+
+  <h1 id="刻意训练、优化与精进，语法阶段，应该如何学“好”？——7月21日教学反思"><a href="#刻意训练、优化与精进，语法阶段，应该如何学“好”？——7月21日教学反思" class="headerlink" title="刻意训练、优化与精进，语法阶段，应该如何学“好”？——7月21日教学反思"></a>刻意训练、优化与精进，语法阶段，应该如何学“好”？——7月21日教学反思</h1><p><a target="_blank" rel="noopener" href="http://212.64.0.27/p/224">有趣的跳跃</a>这道题已经具有区分度了。更新元素差、再对元素差排序，这两件事对 C++ 初学者并非自然而然就能解决。然而，在21日晚上的作业讲解中，小朋友能够相对顺利地完成该题，实际出乎我的意料。</p>
+<p><code>while</code> 与 <code>for</code> 的学习阶段，大多数 C++ 入门者都会遇到困难，原因无他——<strong>认知负荷（Cognitive Load）</strong> 极高。他们 coding 时实际在同时处理三件事：</p>
+<ul>
+<li>C++ 的晦涩语法（如数组的定义与使用）；</li>
+<li>数学逻辑（计算相邻元素差）；</li>
+<li>程序执行的时序性。</li>
+</ul>
+<p>在前一周，我们几乎天天都在学习排序，重复了四天，过程并不顺利：</p>
+<ol>
+<li>学习桶排序时，即便理解 <code>num[x]++</code> 的计数含义，也很难灵活运用。</li>
+<li>选择排序是重灾区，对“下标”的理解不够深刻，导致“最大值与最后值交换”频繁写错，常将 <code>swap(a[maxi], a[last])</code> 写成 <code>swap(max, maxi)</code>。</li>
+<li>交换过程常常只写一个 <code>for</code> 循环。</li>
+</ol>
+<p>好在大家已逐步能完成排序问题，但21日晚上的题目仍然暴露出小问题：</p>
+<ol>
+<li>定义数组时并未完全理解其含义，有时会定义在 <code>for</code> 循环内部。</li>
+<li>相邻元素差只需 <code>n-1</code> 次运算，这种细节问题我进行了提醒。</li>
+<li>第一次写时思路并不够清晰，卡壳后经由问题拆解才最终完成。</li>
+</ol>
+<p>不过瑕不掩瑜，小朋友最终能拥有自己的思路并完成任务，值得肯定。尤其值得留意的是，虽然前一周的选择排序错误频出，但在解决本题时，他们能够将排序逻辑迁移到<strong>“差值数组”</strong>上（尽管过程中仍出现了把 <code>maxi</code> 和 <code>max</code> 写混的情况），这说明前期的“阵痛”确实在潜移默化中建立了条件反射。</p>
+<p>认真分析下来，无论是良好的编程习惯，还是表现相对差强人意的排序，都应深究原因。学生能够独立攻克“有趣的跳跃”这种复合型问题，恰恰验证了前一周高强度“<strong>刻意训练（Deliberate Practice）</strong>”的成效。以下不妨从几个维度进行客观的教学诊断与策略优化。</p>
+<h2 id="1-错误的认知根源从何而来？"><a href="#1-错误的认知根源从何而来？" class="headerlink" title="1. 错误的认知根源从何而来？"></a>1. 错误的认知根源从何而来？</h2><p>小朋友在排序和数组操作中暴露的问题，我认为并非单纯的“粗心”，而是特定的心智模型尚未成型：</p>
+<ul>
+<li><p><strong>值与索引的混淆（Value vs. Index）</strong><br>将 <code>swap(a[maxi], a[last])</code> 错写成 <code>swap(max, maxi)</code>，这并不是罕见的错误，有一个词语叫做：“<strong>间接寻址障碍（Indirect Addressing Barrier）</strong>”，小朋友的思维目前还是直接的“实体化”思维：他关注的是“最大的数字（max）”和“它的位置（maxi）”，而无法在工作记忆中丝滑地处理“通过位置去内存中取出对应的值”这一双重映射过程。</p>
+</li>
+<li><p><strong>空间与时间维度的折叠</strong><br>交换过程常常只写一个 <code>for</code> 循环，说明他的思维仍是<strong>线性</strong>的。他只能思考“如何找到这一轮的最大值并交换”，尚未建立“外层循环控制趟数，内层循环控制每一趟遍历”的二维嵌套视角。</p>
+</li>
+<li><p><strong>离散边界缺失（Fencepost Error）</strong><br>相邻元素差只需 <code>n-1</code> 次运算，这在算法中常被称为“植树问题”。小朋友习惯了从 <code>1</code> 到 <code>n</code> 的遍历，遇到区间跨度计算时，直觉上容易产生“<strong>越界（Off-by-One）</strong>”错误。</p>
+</li>
+<li><p><strong>生命周期感知薄弱</strong><br>将数组定义在 <code>for</code> 循环内部，再次印证了他对“<strong>作用域（Scope）</strong>”和“内存分配”的物理意义缺乏感知，没有意识到每次循环都在反复“新建又销毁”。</p>
+</li>
+</ul>
+<h2 id="2-“必要难度”与刻意训练"><a href="#2-“必要难度”与刻意训练" class="headerlink" title="2. “必要难度”与刻意训练"></a>2. “必要难度”与刻意训练</h2><p>虽然过程很困难，每题都写了一个多小时，但这实际是一个极其关键且积极的数据指标。</p>
+<p>针对那些恰好处于个人能力极限边缘的表现任务，进行有意识的重复练习，这正是脑科学与学习科学中常讨论的“<strong>刻意训练</strong>”与“<strong>必要难度（Desirable Difficulty）</strong>”。如果学生十分钟就能写完，那叫机械重复；耗时一小时且伴随卡壳，说明这道题恰好落入了他的“<strong>最近发展区（Zone of Proximal Development, ZPD）</strong>”。他在这个过程中经历了完整的试错、反思和重构，这种伴随着轻微痛苦的脑力消耗，正是神经元建立新连接的标志。坚持让他用新知识去碰撞难题，这种难度设置确实是正确的“实战驱动”策略。</p>
+<h2 id="3-精进与优化路径"><a href="#3-精进与优化路径" class="headerlink" title="3. 精进与优化路径"></a>3. 精进与优化路径</h2><p>目前小朋友已具备解决复杂问题的基础零件（会循环、会基本判断、懂排序概念），接下来的教学重点应从“教语法”转向“教工程方法”：</p>
+<ul>
+<li><p><strong>强化变量追踪与草图</strong><br>针对索引混淆，必须强制他画图。画一排方框代表数组，方框内写“值”，方框上方标“索引”。当他要交换时，指着图问他：“我们是要交换这两个框子上面的门牌号，还是交换框子里面的苹果？”通过具象化物理模型，消除抽象层面的混淆。</p>
+</li>
+<li><p><strong>固化“拆解”流程</strong><br>“卡壳后拆解问题才完成”屡见不鲜，但目前的拆解是由我作为外力介入，无形中剥夺了他自己解决问题的机会。下一步需要将这种能力内化给他——要求他在写代码前，必须用中文在 IDE 里写下注释步骤（例如：<code>// 1. 读入 n 个数字</code>，<code>// 2. 计算 n-1 个差值存入新数组</code>，<code>// 3. 对新数组排序</code>）。只有注释的逻辑理顺了，才允许他开始写具体的 C++ 代码。</p>
+</li>
+<li><p>**强化中间态验证<br>针对 <code>n-1</code> 次运算的细节问题，不要直接提醒他，而是教他把数组内容 <code>cout</code> 打印出来。当他看到输出了一个未知的乱码或越界的值时，引导他自己发现“原来多算了一次”。</p>
+</li>
+</ul>
+<h2 id="4-警惕：注意认知过载的边界"><a href="#4-警惕：注意认知过载的边界" class="headerlink" title="4. 警惕：注意认知过载的边界"></a>4. 警惕：注意认知过载的边界</h2><p>即便“刻意练习”非常有效，但必须注意其前提是学习者处于<strong>最近发展区</strong>；一旦越过这个区域，刻意练习就会沦为“<strong>认知过载</strong>”。当大脑装不下那么多概念时，人类本能就会放弃逻辑推理，退化为低阶的随机碰撞。</p>
+<p>刚讲完数组直接跨越到排序和前缀和，实际就造成了认知过载。人的工作记忆容量极度有限，10–14 岁儿童的工作记忆容量通常只有3–4 个组块。这也解释了为什么数组之后讲解排序会较为困难：</p>
+<ul>
+<li><strong>组块1：</strong> 数组语法与索引映射（<code>a[i]</code> 到底是指位置还是指里面的数）</li>
+<li><strong>组块2：</strong> 双层循环的时序性（外层控制趟数，内层控制遍历）</li>
+<li><strong>组块3：</strong> 间接寻址与状态追踪（<code>maxi</code> 记下标，<code>a[maxi]</code> 找值）</li>
+<li><strong>组块4：</strong> 非破坏性交换逻辑（<code>swap</code> 或三杯水交换）</li>
+</ul>
+<p>过多组块瞬间挤爆工作记忆，导致小朋友根本无力思考“为什么交换只写一个 <code>for</code>”，因为他连 <code>a[maxi]</code> 和 <code>max</code> 的区别都分不清了。</p>
+<p>在此之前，“每题都写了一个多小时，卡壳后靠老师拆解”，说明小朋友已踩在认知过载的边缘。如果不给大脑留出“<strong>模式自动化</strong>”的时间，高强度练习积累的将不是逻辑能力，而是挫败感。</p>
+<h2 id="教学节奏优化"><a href="#教学节奏优化" class="headerlink" title="教学节奏优化"></a>教学节奏优化</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">[数组基础语法] </span><br><span class="line">       │</span><br><span class="line">       ▼</span><br><span class="line">[单层循环 + 单数组应用] ➔ (熟练到不出问题)</span><br><span class="line">       │  ├── 线性查找、极值统计 (Max/Min)</span><br><span class="line">       │  ├── 频次统计 (桶的思想雏形：a[num]++;)</span><br><span class="line">       │  └── 数组逆序/移位 (理解索引操作)</span><br><span class="line">       │</span><br><span class="line">       ▼</span><br><span class="line">[前缀和 (单层循环算法)] ➔ (引入预处理思想，但仅限单层循环)</span><br><span class="line">       │</span><br><span class="line">       ▼</span><br><span class="line">[双层循环 + 嵌套逻辑 (排序/二维数组)] ➔ (攻克间接寻址与嵌套时序)</span><br></pre></td></tr></table></figure>
+
+<p>具体策略调整：</p>
+<ol>
+<li><p><strong>先降维，后升阶（分离“语法”与“算法”）</strong><br>在讲前缀和或排序之前，不要直接在 IDE 里敲代码，先在纸上用“表格法”或“手动算盘”把逻辑跑通。当算法逻辑在纸上变成直觉后，再写代码。</p>
+</li>
+<li><p><strong>建立“组块自动化”标准</strong><br>在引入双层循环（排序）前，确保孩子对单层循环数组操作已达到“不占用思考带宽”的熟练度（例如：3 分钟内手写出“求数组平均值和最大值”且零语法错误）。</p>
+</li>
+<li><p><strong>从“写代码”转向“读代码&#x2F;改代码”</strong><br>与其让他在认知过载状态下从零敲 1 小时代码，不如给一段乱序的，或带有 1–2 个经典 Bug 的代码（比如作用域写错、越界），让他去充当“编译器”找错。这样能极大降低外在认知负荷，训练逻辑思维。</p>
+</li>
+</ol>
+
+  <p><a class="classtest-link" href="/tags/%E6%95%99%E5%AD%A6%E5%8F%8D%E6%80%9D/" rel="tag">教学反思</a> — 2026年7月22日</p>
+  
+  <hr>
+<section id="comments" class="mt-2 mb-3">
+
+  <div id="disqus_thread">
+    <a href="#" class="button button-primary" onclick="loadDisqus();return false;">View / Make Comments</a>
+  </div>
+
+  <script>
+    var disqus_config = function() {
+      this.page.url = 'https://blog.hanzel.top/posts/7月21日教学反思/index.html';
+      this.page.identifier = 'posts/7月21日教学反思/index.html';
+      this.page.title = '刻意训练、优化与精进，语法如何学好？——7月21日教学反思';
+    };
+
+    var is_disqus_loaded = false;
+
+    function loadDisqus() {
+      if (!is_disqus_loaded) {
+        is_disqus_loaded = true;
+
+        var d = document,
+          s = d.createElement('script');
+        s.src = 'https://https-adisaktijrs-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+    }
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+        </div>
+        <div class="row mt-2">
+  <h3>Search</h3>
+  <div><input id="search-text" title="search" class="search-text" type="text" placeholder="search......"></div>
+  <div style="margin-top: 1.5rem;">
+    <ul id="result"></ul>
+  </div>
+</div>
+        <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+        at <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noreferrer">Earth</a>.</p>
+        
+    </div>
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/seekerzhz" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>
