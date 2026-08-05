@@ -213,14 +213,10 @@ MathJax = {
 
   <p>Yesterday afternoon, I finally claimed the dezoist.top domain.</p>
 <p>With it, I deployed three services under separate subdomains:</p>
-<p>DataForge — my AI-powered data analysis platform<br>
-Online Judge — my personal OJ for algorithm practice<br>
-Blog — the place where I document what I build and learn</p>
+<p>DataForge — my AI-powered data analysis platform<br>Online Judge — my personal OJ for algorithm practice<br>Blog — the place where I document what I build and learn</p>
 <p>Surprisingly, the entire deployment went much more smoothly than I expected. Compared with my previous deployment experiences, almost everything worked on the first try.</p>
 <p>The only part that slowed me down was configuring the reverse proxy. Since all three services shared the same public IP, I needed Caddy to route incoming requests based on the requested hostname:</p>
-<p>dataforge.dezoist.top → localhost:8000<br>
-blog.dezoist.top → localhost:8001<br>
-oj.dezoist.top → localhost:8888</p>
+<p>dataforge.dezoist.top → localhost:8000<br>blog.dezoist.top → localhost:8001<br>oj.dezoist.top → localhost:8888</p>
 <p>I also learned an important lesson during the process: a reverse proxy routes requests by hostname, not by IP. Once I understood how Caddy matched Host headers and forwarded requests to different local ports, the whole setup became surprisingly elegant.</p>
 <p>Now everything is running under a single domain with automatic HTTPS, making future deployments much easier. It feels satisfying to see my projects finally organized under one unified identity.</p>
 

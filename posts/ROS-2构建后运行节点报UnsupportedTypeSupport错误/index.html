@@ -23,7 +23,7 @@ MathJax = {
   
   <link rel="canonical" href="https://blog.hanzel.top/posts/ROS-2%E6%9E%84%E5%BB%BA%E5%90%8E%E8%BF%90%E8%A1%8C%E8%8A%82%E7%82%B9%E6%8A%A5UnsupportedTypeSupport%E9%94%99%E8%AF%AF/">
   
-  <meta name="description" content="问题现象 在 ROS 2 Humble 工作空间中，你顺利执行了 colcon build，一切看起来都很正常： 12345Starting &amp;gt;&amp;gt;&amp;gt; system_status_interfacesFinished &amp;lt;&amp;lt;&amp;lt; system_status_interf">
+  <meta name="description" content="问题现象在 ROS 2 Humble 工作空间中，你顺利执行了 colcon build，一切看起来都很正常： 12345Starting &amp;gt;&amp;gt;&amp;gt; system_status_interfacesFinished &amp;lt;&amp;lt;&amp;lt; system_status_interfa">
   
   
   <meta name="keywords" content="Computer Science,Database,Distributed Systems,Systems Programming,Programming,Research Notes">
@@ -36,14 +36,14 @@ MathJax = {
   <meta property="og:type" content="article" />
   <meta property="og:title" content="ROS 2 构建后运行节点报 `UnsupportedTypeSupport` 错误？可能是 Python 版本惹的祸！" />
   
-  <meta property="og:description" content="问题现象 在 ROS 2 Humble 工作空间中，你顺利执行了 colcon build，一切看起来都很正常： 12345Starting &amp;gt;&amp;gt;&amp;gt; system_status_interfacesFinished &amp;lt;&amp;lt;&amp;lt; system_status_interf">
+  <meta property="og:description" content="问题现象在 ROS 2 Humble 工作空间中，你顺利执行了 colcon build，一切看起来都很正常： 12345Starting &amp;gt;&amp;gt;&amp;gt; system_status_interfacesFinished &amp;lt;&amp;lt;&amp;lt; system_status_interfa">
   
   <meta property="og:url" content="https://blog.hanzel.top/posts/ROS-2%E6%9E%84%E5%BB%BA%E5%90%8E%E8%BF%90%E8%A1%8C%E8%8A%82%E7%82%B9%E6%8A%A5UnsupportedTypeSupport%E9%94%99%E8%AF%AF/" />
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="ROS 2 构建后运行节点报 `UnsupportedTypeSupport` 错误？可能是 Python 版本惹的祸！">
   
-  <meta name="twitter:description" content="问题现象 在 ROS 2 Humble 工作空间中，你顺利执行了 colcon build，一切看起来都很正常： 12345Starting &amp;gt;&amp;gt;&amp;gt; system_status_interfacesFinished &amp;lt;&amp;lt;&amp;lt; system_status_interf">
+  <meta name="twitter:description" content="问题现象在 ROS 2 Humble 工作空间中，你顺利执行了 colcon build，一切看起来都很正常： 12345Starting &amp;gt;&amp;gt;&amp;gt; system_status_interfacesFinished &amp;lt;&amp;lt;&amp;lt; system_status_interfa">
   
   
   
@@ -211,60 +211,63 @@ MathJax = {
         <div class="trans">
             <h2>ROS 2 构建后运行节点报 `UnsupportedTypeSupport` 错误？可能是 Python 版本惹的祸！</h2>
 
-  <h2 id="问题现象">问题现象</h2>
-<p>在 ROS 2 Humble 工作空间中，你顺利执行了 <code>colcon build</code>，一切看起来都很正常：</p>
+  <h2 id="问题现象"><a href="#问题现象" class="headerlink" title="问题现象"></a>问题现象</h2><p>在 ROS 2 Humble 工作空间中，你顺利执行了 <code>colcon build</code>，一切看起来都很正常：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Starting &gt;&gt;&gt; system_status_interfaces</span><br><span class="line">Finished &lt;&lt;&lt; system_status_interfaces [0.62s]</span><br><span class="line">Starting &gt;&gt;&gt; status_publisher</span><br><span class="line">Finished &lt;&lt;&lt; status_publisher [0.92s]</span><br><span class="line">Summary: 2 packages finished [1.78s]</span><br></pre></td></tr></table></figure>
+
 <p>可当你满怀期待地运行节点时，却迎面撞上异常：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ros2 run status_publisher monitor</span><br></pre></td></tr></table></figure>
+
 <p>错误堆栈如下（关键部分）：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ModuleNotFoundError: No module named &#x27;system_status_interfaces.system_status_interfaces_s__rosidl_typesupport_c&#x27;</span><br><span class="line">...</span><br><span class="line">rosidl_generator_py.import_type_support_impl.UnsupportedTypeSupport: </span><br><span class="line">Could not import &#x27;rosidl_typesupport_c&#x27; for package &#x27;system_status_interfaces&#x27;</span><br></pre></td></tr></table></figure>
+
+
+
 <hr>
-<h2 id="问题定位">问题定位</h2>
-<p>ROS 2 的接口包（<code>system_status_interfaces</code>）在编译时会为 C++ 和 Python 分别生成类型支持（type support）库。Python 的类型支持库是一个动态链接库（<code>.so</code> 文件），它的命名中包含 Python 的版本号，例如 <code>cpython-36m</code> 表示是为 Python 3.6 编译的。</p>
+<h2 id="问题定位"><a href="#问题定位" class="headerlink" title="问题定位"></a>问题定位</h2><p>ROS 2 的接口包（<code>system_status_interfaces</code>）在编译时会为 C++ 和 Python 分别生成类型支持（type support）库。Python 的类型支持库是一个动态链接库（<code>.so</code> 文件），它的命名中包含 Python 的版本号，例如 <code>cpython-36m</code> 表示是为 Python 3.6 编译的。</p>
 <p>当我们查看 <code>install/system_status_interfaces/local/lib/python3.10/dist-packages/system_status_interfaces/</code> 目录时，发现：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">system_status_interfaces_s__rosidl_typesupport_c.cpython-36m-x86_64-linux-gnu.so</span><br></pre></td></tr></table></figure>
+
 <p>而当前 Ubuntu 22.04 默认的 Python 是 <strong>3.10</strong>。Python 3.10 的解释器无法加载为 Python 3.6 编译的扩展模块，因此 <code>import_type_support</code> 失败，抛出 <code>UnsupportedTypeSupport</code>。</p>
 <p>同时，构建时还出现了符号链接创建失败的问题：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">failed to create symbolic link ... because existing path cannot be removed: Is a directory</span><br></pre></td></tr></table></figure>
+
 <p>这说明工作空间有残留的构建文件，需要彻底清理。</p>
 <hr>
-<h2 id="解决步骤">解决步骤</h2>
-<h3 id="1-彻底清理工作空间（去除残留）">1. 彻底清理工作空间（去除残留）</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/sms</span><br><span class="line"><span class="built_in">rm</span> -rf build install <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+<h2 id="解决步骤"><a href="#解决步骤" class="headerlink" title="解决步骤"></a>解决步骤</h2><h3 id="1-彻底清理工作空间（去除残留）"><a href="#1-彻底清理工作空间（去除残留）" class="headerlink" title="1. 彻底清理工作空间（去除残留）"></a>1. 彻底清理工作空间（去除残留）</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/sms</span><br><span class="line"><span class="built_in">rm</span> -rf build install <span class="built_in">log</span></span><br></pre></td></tr></table></figure>
+
 <p>这一步可以清除所有旧的构建产物，避免符号链接冲突和版本残留。</p>
-<h3 id="2-显式指定-Python-解释器版本">2. 显式指定 Python 解释器版本</h3>
-<p>错误产生的根本原因是 CMake 在构建时错误地找到了 Python 3.6（可能因为环境变量或历史配置）。我们需要强制 CMake 使用系统当前的 Python 3.10。</p>
+<h3 id="2-显式指定-Python-解释器版本"><a href="#2-显式指定-Python-解释器版本" class="headerlink" title="2. 显式指定 Python 解释器版本"></a>2. 显式指定 Python 解释器版本</h3><p>错误产生的根本原因是 CMake 在构建时错误地找到了 Python 3.6（可能因为环境变量或历史配置）。我们需要强制 CMake 使用系统当前的 Python 3.10。</p>
 <p>在构建前，设置环境变量：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> Python3_EXECUTABLE=/usr/bin/python3</span><br><span class="line"><span class="built_in">export</span> PYTHON_EXECUTABLE=/usr/bin/python3</span><br></pre></td></tr></table></figure>
+
 <p>或者，如果你希望一劳永逸，可以将这两行添加到 <code>~/.bashrc</code> 中。</p>
 <p><strong>更推荐的做法</strong>：在接口包的 <code>CMakeLists.txt</code> 中加入以下内容，明确查找 Python 3：</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在 find_package(ament_cmake REQUIRED) 之后添加</span></span><br><span class="line"><span class="keyword">set</span>(Python3_FIND_STRATEGY LOCATION)</span><br><span class="line"><span class="keyword">find_package</span>(Python3 REQUIRED COMPONENTS Interpreter Development)</span><br></pre></td></tr></table></figure>
+
 <p>这样 CMake 就会自动使用系统找到的 Python 3.10，而不是随意猜测。</p>
-<h3 id="3-检查并补全-CMakeLists-txt-和-package-xml">3. 检查并补全 <code>CMakeLists.txt</code> 和 <code>package.xml</code></h3>
-<p>如果你的 <code>CMakeLists.txt</code> 中没有正确依赖 <code>rosidl_default_generators</code>，也会导致类型支持生成不完整。确保包含：</p>
+<h3 id="3-检查并补全-CMakeLists-txt-和-package-xml"><a href="#3-检查并补全-CMakeLists-txt-和-package-xml" class="headerlink" title="3. 检查并补全 CMakeLists.txt 和 package.xml"></a>3. 检查并补全 <code>CMakeLists.txt</code> 和 <code>package.xml</code></h3><p>如果你的 <code>CMakeLists.txt</code> 中没有正确依赖 <code>rosidl_default_generators</code>，也会导致类型支持生成不完整。确保包含：</p>
 <figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">find_package</span>(rosidl_default_generators REQUIRED)</span><br><span class="line"></span><br><span class="line">rosidl_generate_interfaces(<span class="variable">$&#123;PROJECT_NAME&#125;</span></span><br><span class="line">  <span class="string">&quot;msg/SystemStatus.msg&quot;</span>   <span class="comment"># 替换为你的实际 msg 文件名</span></span><br><span class="line">  DEPENDENCIES builtin_interfaces  <span class="comment"># 如果有依赖则添加</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
 <p><code>package.xml</code> 中也需有：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">build_depend</span>&gt;</span>rosidl_default_generators<span class="tag">&lt;/<span class="name">build_depend</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">exec_depend</span>&gt;</span>rosidl_default_runtime<span class="tag">&lt;/<span class="name">exec_depend</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">member_of_group</span>&gt;</span>rosidl_interface_packages<span class="tag">&lt;/<span class="name">member_of_group</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h3 id="4-重新构建并测试">4. 重新构建并测试</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/sms</span><br><span class="line">colcon build --symlink-install --packages-select system_status_interfaces status_publisher</span><br><span class="line"><span class="comment"># 如果成功，再构建所有包</span></span><br><span class="line">colcon build --symlink-install</span><br><span class="line"><span class="built_in">source</span> ~/sms/install/setup.bash</span><br><span class="line">ros2 run status_publisher monitor</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-重新构建并测试"><a href="#4-重新构建并测试" class="headerlink" title="4. 重新构建并测试"></a>4. 重新构建并测试</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> ~/sms</span><br><span class="line">colcon build --symlink-install --packages-select system_status_interfaces status_publisher</span><br><span class="line"><span class="comment"># 如果成功，再构建所有包</span></span><br><span class="line">colcon build --symlink-install</span><br><span class="line"><span class="built_in">source</span> ~/sms/install/setup.bash</span><br><span class="line">ros2 run status_publisher monitor</span><br></pre></td></tr></table></figure>
+
 <p>此时你应该能看到节点顺利启动，不再报错。</p>
 <hr>
-<h2 id="为什么会出现这个问题？">为什么会出现这个问题？</h2>
-<ul>
+<h2 id="为什么会出现这个问题？"><a href="#为什么会出现这个问题？" class="headerlink" title="为什么会出现这个问题？"></a>为什么会出现这个问题？</h2><ul>
 <li><strong>CMake 的 Python 探测机制</strong>：在某些环境下（比如曾经安装过多个 Python 版本），CMake 可能优先找到旧的 Python 库路径，导致生成的 <code>.so</code> 文件带错版本标签。</li>
 <li><strong>工作空间重复构建</strong>：之前可能构建时使用了不同的 Python 版本，而 <code>install</code> 目录中的文件没有被完全覆盖，导致版本混乱。</li>
 <li><strong><code>--symlink-install</code> 与普通安装混合</strong>：符号链接安装有时会遗留目录结构，导致后续构建无法覆盖，需要手动清理。</li>
 </ul>
-<h2 id="✅-预防措施">✅ 预防措施</h2>
-<ol>
+<h2 id="✅-预防措施"><a href="#✅-预防措施" class="headerlink" title="✅ 预防措施"></a>✅ 预防措施</h2><ol>
 <li><strong>始终使用 <code>--symlink-install</code> 并定期清理</strong>：在开发阶段，建议每次重大改动后执行 <code>rm -rf build install log</code> 再重新构建。</li>
 <li><strong>明确 Python 版本</strong>：在构建脚本或 <code>CMakeLists.txt</code> 中固定 Python 版本，避免依赖系统默认。</li>
 <li><strong>检查 <code>.so</code> 文件名</strong>：如果再次遇到类似错误，可以先检查 <code>install</code> 下生成的 <code>.so</code> 文件名是否与当前 Python 版本匹配（<code>python3 -c &quot;import sys; print(sys.version)&quot;</code> 查看版本号）。</li>
 <li><strong>使用 Docker 或虚拟环境</strong>：确保开发环境的一致性，避免多版本 Python 干扰。</li>
 </ol>
 <hr>
-<h2 id="总结">总结</h2>
-<p><code>UnsupportedTypeSupport</code> 错误在 ROS 2 开发中并不少见，其本质是类型支持库与 Python 解释器版本不兼容。通过以下三个关键动作：</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>UnsupportedTypeSupport</code> 错误在 ROS 2 开发中并不少见，其本质是类型支持库与 Python 解释器版本不兼容。通过以下三个关键动作：</p>
 <ul>
 <li><strong>彻底清理</strong>构建目录；</li>
 <li><strong>显式指定 Python 3.10</strong>；</li>
