@@ -23,7 +23,7 @@ MathJax = {
   
   <link rel="canonical" href="https://blog.hanzel.top/posts/SSH%E8%BF%9C%E7%A8%8B%E5%BC%80%E5%8F%91%EF%BC%9A%E9%85%8D%E7%BD%AE-X11-%E8%BD%AC%E5%8F%91%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E6%98%BE%E7%A4%BA/">
   
-  <meta name="description" content="好的，我为您整理了一篇技术博客，将之前的配置步骤和要点整合成一篇结构清晰的文章，适合发布在个人博客或技术社区。  前言在 Linux 服务器上进行开发时，我们经常需要运行带有图形界面的程序（如 OpenCV 的图像显示、GUI 调试工具、Matplotlib 绘图等）。通过 SSH 远程连接时，X1">
+  <meta name="description" content="前言在 Linux 服务器上进行开发时，我们经常需要运行带有图形界面的程序（如 OpenCV 的图像显示、GUI 调试工具、Matplotlib 绘图等）。通过 SSH 远程连接时，X11 转发能够将远程服务器的图形界面“投射”到本地 Windows 或 macOS 电脑上。本文将以 Windows">
   
   
   <meta name="keywords" content="Computer Science,Database,Distributed Systems,Systems Programming,Programming,Research Notes">
@@ -36,14 +36,14 @@ MathJax = {
   <meta property="og:type" content="article" />
   <meta property="og:title" content="SSH远程开发：配置 X11 转发实现图形界面显示" />
   
-  <meta property="og:description" content="好的，我为您整理了一篇技术博客，将之前的配置步骤和要点整合成一篇结构清晰的文章，适合发布在个人博客或技术社区。  前言在 Linux 服务器上进行开发时，我们经常需要运行带有图形界面的程序（如 OpenCV 的图像显示、GUI 调试工具、Matplotlib 绘图等）。通过 SSH 远程连接时，X1">
+  <meta property="og:description" content="前言在 Linux 服务器上进行开发时，我们经常需要运行带有图形界面的程序（如 OpenCV 的图像显示、GUI 调试工具、Matplotlib 绘图等）。通过 SSH 远程连接时，X11 转发能够将远程服务器的图形界面“投射”到本地 Windows 或 macOS 电脑上。本文将以 Windows">
   
   <meta property="og:url" content="https://blog.hanzel.top/posts/SSH%E8%BF%9C%E7%A8%8B%E5%BC%80%E5%8F%91%EF%BC%9A%E9%85%8D%E7%BD%AE-X11-%E8%BD%AC%E5%8F%91%E5%AE%9E%E7%8E%B0%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2%E6%98%BE%E7%A4%BA/" />
 
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SSH远程开发：配置 X11 转发实现图形界面显示">
   
-  <meta name="twitter:description" content="好的，我为您整理了一篇技术博客，将之前的配置步骤和要点整合成一篇结构清晰的文章，适合发布在个人博客或技术社区。  前言在 Linux 服务器上进行开发时，我们经常需要运行带有图形界面的程序（如 OpenCV 的图像显示、GUI 调试工具、Matplotlib 绘图等）。通过 SSH 远程连接时，X1">
+  <meta name="twitter:description" content="前言在 Linux 服务器上进行开发时，我们经常需要运行带有图形界面的程序（如 OpenCV 的图像显示、GUI 调试工具、Matplotlib 绘图等）。通过 SSH 远程连接时，X11 转发能够将远程服务器的图形界面“投射”到本地 Windows 或 macOS 电脑上。本文将以 Windows">
   
   
   
@@ -211,9 +211,7 @@ MathJax = {
         <div class="trans">
             <h2>SSH远程开发：配置 X11 转发实现图形界面显示</h2>
 
-  <p>好的，我为您整理了一篇技术博客，将之前的配置步骤和要点整合成一篇结构清晰的文章，适合发布在个人博客或技术社区。</p>
-<hr>
-<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在 Linux 服务器上进行开发时，我们经常需要运行带有图形界面的程序（如 OpenCV 的图像显示、GUI 调试工具、Matplotlib 绘图等）。通过 SSH 远程连接时，X11 转发能够将远程服务器的图形界面“投射”到本地 Windows 或 macOS 电脑上。本文将以 Windows 系统 + VSCode 为例，手把手教你配置 X11 转发，让远程图形程序无缝显示在本地。</p>
+  <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在 Linux 服务器上进行开发时，我们经常需要运行带有图形界面的程序（如 OpenCV 的图像显示、GUI 调试工具、Matplotlib 绘图等）。通过 SSH 远程连接时，X11 转发能够将远程服务器的图形界面“投射”到本地 Windows 或 macOS 电脑上。本文将以 Windows 系统 + VSCode 为例，手把手教你配置 X11 转发，让远程图形程序无缝显示在本地。</p>
 <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2><ul>
 <li><strong>本地</strong>：Windows 10&#x2F;11（已安装 OpenSSH 客户端）</li>
 <li><strong>远程</strong>：Linux 服务器（Ubuntu&#x2F;CentOS 均可）</li>
