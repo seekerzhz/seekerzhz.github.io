@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+<script>
+MathJax = {
+  tex: {
+    inlineMath: [['$', '$'], ['\\(', '\\)']]
+  }
+};
+</script>
+
+<script async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <!-- Minima -->
+  <!-- Hexo theme created by @adisaktijrs -->
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+
+  
+  <title>“这是为你好”——头盔的罚款是正当性的吗？</title>
+  
+  <link rel="canonical" href="https://blog.hanzel.top/posts/%E4%B8%8D%E6%88%B4%E5%A4%B4%E7%9B%94%E8%A6%81%E7%BD%9A%E6%AC%BE%E5%90%97%EF%BC%9F/">
+  
+  <meta name="description" content="你骑着电动车，天色很好，路也不远。你没有戴头盔。你觉得这不关别人的事——毕竟，如果出了事，受伤的是你自己，不是别人。 然而，2021年4月29日，第十三届全国人民代表大会常务委员会第二十八次会议通过了《关于修改〈中华人民共和国道路交通安全法〉等八部法律的决定》。自此之后，骑电动车不戴头盔大概率要被罚">
+  
+  
+  <meta name="keywords" content="Computer Science,Database,Distributed Systems,Systems Programming,Programming,Research Notes">
+  
+  <meta name="author" content="Harry Zhao">
+  
+  
+  
+  <meta property="og:site_name" content="Harry&#39;s Blog" />
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="“这是为你好”——头盔的罚款是正当性的吗？" />
+  
+  <meta property="og:description" content="你骑着电动车，天色很好，路也不远。你没有戴头盔。你觉得这不关别人的事——毕竟，如果出了事，受伤的是你自己，不是别人。 然而，2021年4月29日，第十三届全国人民代表大会常务委员会第二十八次会议通过了《关于修改〈中华人民共和国道路交通安全法〉等八部法律的决定》。自此之后，骑电动车不戴头盔大概率要被罚">
+  
+  <meta property="og:url" content="https://blog.hanzel.top/posts/%E4%B8%8D%E6%88%B4%E5%A4%B4%E7%9B%94%E8%A6%81%E7%BD%9A%E6%AC%BE%E5%90%97%EF%BC%9F/" />
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="“这是为你好”——头盔的罚款是正当性的吗？">
+  
+  <meta name="twitter:description" content="你骑着电动车，天色很好，路也不远。你没有戴头盔。你觉得这不关别人的事——毕竟，如果出了事，受伤的是你自己，不是别人。 然而，2021年4月29日，第十三届全国人民代表大会常务委员会第二十八次会议通过了《关于修改〈中华人民共和国道路交通安全法〉等八部法律的决定》。自此之后，骑电动车不戴头盔大概率要被罚">
+  
+  
+  
+  
+  <meta name="twitter:url" content="https://blog.hanzel.top/posts/%E4%B8%8D%E6%88%B4%E5%A4%B4%E7%9B%94%E8%A6%81%E7%BD%9A%E6%AC%BE%E5%90%97%EF%BC%9F/" />
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Preload fonts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="preload" href="/fonts/dm-serif-display-v4-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/inter-v2-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+<link rel="stylesheet" href="/css/normalize.css">
+
+  
+<link rel="stylesheet" href="/css/skeleton.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+<link rel="stylesheet" href="/css/prism-dark.css">
+
+  
+<link rel="stylesheet" href="/css/prism-line-numbers.css">
+
+  <!-- User css -->
+  
+  
+<link rel="stylesheet" href="/css/user.css">
+
+  
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="/images/dove-icon.png">
+
+  <!-- Custom Theme Color Style
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <style>
+  a:not(.icon) {
+    text-decoration-color: #0FA0CE;
+    background-image: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0) 50%,
+      #0FA0CE 50%
+    );
+  }
+  blockquote {
+    border-left: 8px solid #0FA0CE;
+  }
+  .nanobar .bar {
+    background: #0FA0CE;
+  }
+  .button.button-primary:hover,
+  button.button-primary:hover,
+  input[type="submit"].button-primary:hover,
+  input[type="reset"].button-primary:hover,
+  input[type="button"].button-primary:hover,
+  .button.button-primary:focus,
+  button.button-primary:focus,
+  input[type="submit"].button-primary:focus,
+  input[type="reset"].button-primary:focus,
+  input[type="button"].button-primary:focus {
+    background-color: #0FA0CE;
+    border-color: #0FA0CE;
+  }
+  input[type="email"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="text"]:focus,
+  input[type="tel"]:focus,
+  input[type="url"]:focus,
+  input[type="password"]:focus,
+  textarea:focus,
+  select:focus {
+    border: 1px solid #0FA0CE;
+  }
+</style>
+
+  <!-- Google Analytics (With Privacy Settings On)
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  
+
+  
+  <script src="/js/pic.min.js" defer></script>
+  
+
+  
+
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <div>
+
+        <div class="row">
+  <div class="two columns" style="max-width: 50px">
+    <h1 class="mt-2 mode">
+      <div onclick=setDarkMode(true) id="darkBtn">🌑</div>
+      <div onclick=setDarkMode(false) id="lightBtn" class=hidden>☀️</div>
+      <script >
+        if (localStorage.getItem('preferredTheme') == 'dark') {
+          setDarkMode(true)
+        }
+        function setDarkMode(isDark) {
+          var darkBtn = document.getElementById('darkBtn')
+          var lightBtn = document.getElementById('lightBtn')
+          if (isDark) {
+            lightBtn.style.display = "block"
+            darkBtn.style.display = "none"
+            localStorage.setItem('preferredTheme', 'dark');
+          } else {
+            lightBtn.style.display = "none"
+            darkBtn.style.display = "block"
+            localStorage.removeItem('preferredTheme');
+          }
+          document.body.classList.toggle("darkmode");
+        }
+      </script>
+    </h1>
+  </div>
+
+  <div class="six columns ml-1">
+    <h1 class="mt-2">
+      Hi Folks.
+    </h1>
+  </div>
+
+  <div class="twelve columns">
+    <div class="row">
+      <div class="nine columns left">
+        <a href="/">Home</a>
+        
+          
+          <a href="/archives" class="ml">Archives</a>
+          
+        
+          
+          <a href="/Works" class="ml">Works</a>
+          
+        
+          
+          <a href="/About" class="ml">About</a>
+          
+        
+        
+          
+            <a href="mailto:zhaohanzheng@yeah.net" target="_blank" class="ml">Email</a>
+          
+        
+      </div>
+    </div>
+    <hr style="margin-bottom: 2.6rem">
+  </div>
+</div>
+
+        <div class="trans">
+            <h2>“这是为你好”——头盔的罚款是正当性的吗？</h2>
+
+  <p>你骑着电动车，天色很好，路也不远。你没有戴头盔。你觉得这不关别人的事——毕竟，如果出了事，受伤的是你自己，不是别人。</p>
+<p>然而，2021年4月29日，第十三届全国人民代表大会常务委员会第二十八次会议通过了《关于修改〈中华人民共和国道路交通安全法〉等八部法律的决定》。自此之后，骑电动车不戴头盔大概率要被罚款20~50元不等。  </p>
+<blockquote>
+<p><em>“对文明社会的任何成员行使权力，即使违背其意愿，也只能是为了防止对他人的伤害。”</em></p>
+<p>——约翰·斯图亚特·密尔，《论自由》，1859年</p>
+</blockquote>
+<p>约翰·斯图尔特·密尔他在《论自由》中提出了著名的 “伤害原则”（Harm Principle） ：公权力只有在防止一个人对他人造成伤害时，才有正当理由对其个人的自由施加强制力。简单地说，只要不伤害他人，人就可以为所欲为。</p>
+<p>一个人的身体和心灵，属于他自己。如果他只是伤害自己——比如不戴头盔骑车——那是他自己的事，社会可以劝说他、教育他，但无权用法律惩罚他。酒驾该罚——因为它直接威胁他人的生命安全；公共场所吸烟该罚——因为二手烟伤害旁人的健康。但“不戴头盔”？这似乎只是对自己的不负责。政府凭什么罚款？</p>
+<p>这一立法动向恰好将密尔的伤害原则推到了一个极富张力的检验场：<strong>“不戴头盔”——这个看起来纯粹关乎个人安全的行为——是否真的“只关乎自己”？</strong></p>
+<h3 id="一、当伤害的边界从“自涉”变成“涉他”"><a href="#一、当伤害的边界从“自涉”变成“涉他”" class="headerlink" title="一、当伤害的边界从“自涉”变成“涉他”"></a>一、当伤害的边界从“自涉”变成“涉他”</h3><p>密尔把人的行为分为“自涉行为”和“涉他行为”。前者只影响自己，不应受法律干涉；后者影响他人，应受法律约束。这个二分法在19世纪看起来清晰明了，但在21世纪一个高度复杂、高度互联的社会中，<strong>“只影响自己”的行为几乎不存在</strong>。</p>
+<p>让我们分析一下“不戴头盔”如何溢出个人选择的边界，成为影响他人的行为。</p>
+<p><strong>首先，是对事故另一方的连带伤害。</strong> 在中国大陆的交通法规和司法实践中，机动车与非机动车发生事故时，机动车一方往往承担无过错责任或更重的赔偿比例。一起轻微的剐蹭，如果骑行者佩戴了头盔，可能只是擦伤；但如果未戴头盔倒地导致头部重创甚至死亡，这起事故就从民事纠纷升级为<strong>致人死亡的重大交通事故</strong>。机动车驾驶员可能面临超百万元的巨额赔偿，甚至刑事指控和吊销驾照。不戴头盔的个人选择，将致命的风险和沉重的法律责任转嫁给了道路上素不相识的其他人。</p>
+<p><strong>其次，是对公共医疗资源的挤兑。</strong> 在电动自行车交通事故死亡案例中，因颅脑损伤致死的比例高达<strong>81.7%<strong>。而世界卫生组织的报告指出，正确佩戴头盔可以</strong>降低79%的严重脑损伤风险</strong>。颅脑重创患者往往需要动用120急救系统、ICU病房、大量血液库存和长期的医保基金支付。在医疗资源有限的情况下，因“未采取基础防护措施”而导致的重症，挤占了其他危重病人的急救通道，消耗了全社会共同缴纳的医保资金。</p>
+<p><strong>再次，是宏观层面的社会成本。</strong> 2019年，全国驾驶电动自行车死亡人数达8639人，平均<strong>每小时就有1名骑行者死于交通事故</strong>。在全员正确佩戴头盔的情况下，一年也许能挽救两三千人的生命。这种伤亡造成了大量劳动力的丧失和无数破碎的家庭——由此产生的社会救助、孤寡抚恤等负担，最终由全社会共同承担。</p>
+<p>从这些事实来看，“不戴头盔”在骑上车的那一刻或许是个体行为，但它的<strong>后果是高度社会化的</strong>。密尔所说的“对他人的伤害”，在现代社会的语境下，早已不仅仅指二手烟直接进入他人肺部的那种物理性伤害，还包括<strong>将风险成本外部化给社会、给陌生人、给公共资源的那种系统性伤害</strong>。</p>
+<p>这或许就是2021年修法背后最坚实的现实逻辑：<strong>当一个行为的负面后果可以通过社会化的管道转嫁给他人时，它就再也不能被称作“纯粹的自我伤害”了。</strong></p>
+<h3 id="二、另一种正当性：法律父爱主义"><a href="#二、另一种正当性：法律父爱主义" class="headerlink" title="二、另一种正当性：法律父爱主义"></a>二、另一种正当性：法律父爱主义</h3><p>然而，即便我们承认“不戴头盔”具有负外部性，这个论证仍然面临一个尖锐的反问：<strong>为什么不干脆要求行人穿防弹衣？</strong> </p>
+<p>这个反问揭示了一个事实：如果“防止伤害他人”是唯一的正当性来源，那么一旦我们承认“概率性风险”也可以作为处罚的依据，逻辑的滑坡就不可避免——今天可以因为“可能撞到头”而罚你不戴头盔，明天就可以因为“可能被流弹击中”而要求你穿防弹衣。</p>
+<p>面对这个困境，法律哲学提供了另一种正当性资源：<strong>法律父爱主义（Legal Paternalism）</strong> 。</p>
+<p>父爱主义的基本思路是：<strong>政府为了公民自身的利益，可以在某些领域不顾其意愿而限制其自由或自治</strong>。安全带立法就是最经典的例子——美国各州强制驾驶员系安全带，不是因为不系安全带会伤害别人（在只有驾驶员一人的车上，这显然不成立），而是因为政府认为“这是为你好”。</p>
+<p>事实上，强制佩戴头盔在全球范围内并非中国独创。澳大利亚自1991年起成为全球首个在全国范围内强制所有年龄段自行车骑行者佩戴头盔的国家，在新南威尔士州，不戴头盔的罚款高达<strong>344澳元</strong>（约合人民币1600元）。新西兰于1994年跟进，违者处以55新西兰元的现场罚款。美国有49个州强制佩戴安全带，罚款从25美元到200美元不等。日本自2008年起强制后排乘客佩戴安全带，违者扣分。</p>
+<p>面对公民以“侵犯个人自由”为由提起的诉讼，美国各州最高法院和联邦法院几乎无一例外地驳回了起诉。法院的核心理由有二：其一，<strong>风险社会化</strong>——重伤患者的救治费用最终会转嫁给公共医疗系统或导致全民保险费率上涨；其二，<strong>避免二次事故</strong>——如果驾驶员因未戴头盔被击中后瞬间失去知觉，失控的车辆可能成为冲向路人的武器。</p>
+<p><strong>法律父爱主义提供了一种不同于伤害原则的正当性叙事：国家不仅仅是纠纷的仲裁者，也可以是公民的“守护者”。</strong> 它不需要证明某个行为“已经”伤害了他人，只需要证明这个行为“可能”带来不可承受的个人风险——而那个风险的最终买单者，是整个社会。</p>
+<h3 id="三、两种正当性的张力与共存"><a href="#三、两种正当性的张力与共存" class="headerlink" title="三、两种正当性的张力与共存"></a>三、两种正当性的张力与共存</h3><p>至此，我们看到了两种为“头盔罚款”辩护的路径：</p>
+<p><strong>路径一（伤害原则的扩展）</strong> ：不戴头盔不是纯粹的自我伤害，因为它通过医疗挤兑、赔偿转嫁等方式，将成本外部化给了他人和社会。因此，它符合密尔的标准——防止对他人的伤害。</p>
+<p><strong>路径二（法律父爱主义）</strong> ：即使不戴头盔只伤害自己，国家也有权以“为你好”的名义进行干预，因为个人的非理性选择最终会由社会买单，而且保护公民免受自身非理性决策的伤害本身就是国家的正当职能。</p>
+<p>这两条路径的区别是微妙的，但也是关键的。</p>
+<p>路径一试图<strong>将“不戴头盔”重新定义为涉他行为</strong>，从而在密尔的框架内为罚款寻找正当性。它的优势在于尊重了密尔原则的道德直觉——政府不应该只是因为“为你好”就惩罚你。但它的弱点在于，<strong>“可能”导致的后果能否构成“伤害”，在法律上始终是一个有争议的问题</strong>。吸烟导致肺癌是因果关系明确的直接伤害，而“不戴头盔→发生事故→颅脑损伤→占用ICU→挤兑他人医疗资源”则是一条漫长而充满或然性的因果链。用统计学的“必然”来替代因果关系的“必然”，在法律论证上始终存在缝隙。</p>
+<p>路径二则<strong>坦率地承认这就是父爱主义</strong>——国家就是在“为你好”。它的优势在于诚实：它不假装“不戴头盔”和“吸烟”在伤害结构上是同构的，它只是说，<strong>在某些领域，国家可以像一个父亲对待孩子一样对待公民</strong>。但它的弱点同样明显：在自由主义的传统中，“为你好”从来都是一个危险的借口。如果国家可以因为“为你好”而强迫你戴头盔，那明天可不可以因为“为你好”而强迫你吃蔬菜、跑步、早睡早起？</p>
+<h3 id="结语：一场未完成的对话"><a href="#结语：一场未完成的对话" class="headerlink" title="结语：一场未完成的对话"></a>结语：一场未完成的对话</h3><p>这场关于头盔罚款的辩论，最终并没有走向一个简单的“对”或“错”。</p>
+<p>密尔的伤害原则——那个“唯一的目的只是防止对他人的伤害”的简洁公式——在21世纪一个高度互联、风险高度社会化的世界中，面临着前所未有的解释张力。当一个行为“只影响自己”的假设在现代社会几乎不再成立时，伤害原则的边界就不得不被重新绘制。</p>
+<p>而法律父爱主义——那个“政府对公民强制的爱”——虽然在某些领域（安全带、头盔、救生衣）获得了广泛的实践认可和司法支持，但它始终面临着自由主义者最深刻的质疑：<strong>当国家说“这是为你好”的时候，谁来确定什么是“好”？</strong></p>
+<p>2021年的《道路交通安全法》修订，将这个问题从哲学课堂推向了街头巷尾。在每一个被罚了20元或50元的骑行者那里，密尔和桑德尔的辩论都以最具体的方式重演着。</p>
+<p>或许，这场辩论的意义从来不在于找到一个最终的答案——因为在一个多元社会中，关于“自由的边界在哪里”的争论永远不会终结。它的意义在于，<strong>它迫使我们不断追问：法律惩罚的正当性究竟来自哪里？是来自对他人利益的保护，还是来自对个人自身的关怀？这两者之间的界限，又该由谁来划定？</strong></p>
+
+  <p> — 2026年8月14日</p>
+  
+  <hr>
+<section id="comments" class="mt-2 mb-3">
+
+  <div id="disqus_thread">
+    <a href="#" class="button button-primary" onclick="loadDisqus();return false;">View / Make Comments</a>
+  </div>
+
+  <script>
+    var disqus_config = function() {
+      this.page.url = 'https://blog.hanzel.top/posts/不戴头盔要罚款吗？/index.html';
+      this.page.identifier = 'posts/不戴头盔要罚款吗？/index.html';
+      this.page.title = '“这是为你好”——头盔的罚款是正当性的吗？';
+    };
+
+    var is_disqus_loaded = false;
+
+    function loadDisqus() {
+      if (!is_disqus_loaded) {
+        is_disqus_loaded = true;
+
+        var d = document,
+          s = d.createElement('script');
+        s.src = 'https://https-adisaktijrs-github-io.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+    }
+
+  </script>
+  <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</section>
+
+
+
+        </div>
+        <div class="row mt-2">
+  <h3>Search</h3>
+  <div><input id="search-text" title="search" class="search-text" type="text" placeholder="search......"></div>
+  <div style="margin-top: 1.5rem;">
+    <ul id="result"></ul>
+  </div>
+</div>
+        <div class="row mt-2">
+  
+    <div class="eight columns">
+      <p id="madewith">Made with ❤ and
+        <a class="footer-link icon" href="https://hexo.io" target="_blank" style="text-decoration: none;" rel="noreferrer" aria-label="Hexo.io">
+        <svg class="hexo svg-hov" width="14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>Hexo.js</title><path d="M12 .007L1.57 6.056V18.05L12 23.995l10.43-6.049V5.952L12 .007zm4.798 17.105l-.939.521-.939-.521V12.94H9.08v4.172l-.94.521-.938-.521V6.89l.939-.521.939.521v4.172h5.84V6.89l.94-.521.938.521v10.222z"/></svg>
+        </a>
+        
+        at <a href="https://en.wikipedia.org/wiki/Earth" target="_blank" rel="noreferrer">Earth</a>.</p>
+        
+    </div>
+
+    
+      <div>
+          <a href="https://beian.miit.gov.cn/" target="_blank">苏ICP备2026052923号</a>
+      </div>
+    
+
+    <!-- Sepcial thanks to https://simpleicons.org/ for the icons -->
+    <div class="four columns mb-3 posisi" >
+      
+      <a class="ml-0 footer-link icon" href="https://github.com/seekerzhz" target="_blank" style="text-decoration: none" rel="noreferrer" aria-label="GitHub">
+        <svg class="github svg-hov" width="18" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><title>GitHub</title><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      </a>
+      
+
+      
+
+      
+
+      
+
+      
+
+    </div>
+  
+</div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <script src="/js/nanobar.min.js"></script>
+
+  <script>
+    var options = {
+      classname: 'nanobar',
+      id: 'myNanobar'
+    };
+    var nanobar = new Nanobar(options);
+    nanobar.go(30);
+    nanobar.go(76);
+    nanobar.go(100);
+  </script>
+
+</body>
+
+</html>
